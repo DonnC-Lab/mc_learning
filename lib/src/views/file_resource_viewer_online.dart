@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mc_core_constants/mc_core_constants.dart';
+import 'package:mini_campus_core/mini_campus_core.dart';
 
 import '../data/models/resource/file_resource.dart';
 import '../services/storage_service.dart';
@@ -27,7 +27,7 @@ class FileResourceViewerOnline extends ConsumerWidget {
 
     final _style = Theme.of(context).textTheme.subtitle2?.copyWith(
           fontSize: 12,
-          color: greyTextShade,
+          color: McAppColors.appGreyShadeColor,
           fontWeight: FontWeight.w400,
           fontStyle: FontStyle.italic,
         );

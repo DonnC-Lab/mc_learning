@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:mc_core_constants/mc_core_constants.dart';
 import 'package:mini_campus_core/mini_campus_core.dart';
-import 'package:mini_campus_core_components/mini_campus_core_components.dart';
 
 import '../../data/models/course.dart';
 import '../../data/models/resource/file_resource.dart';
@@ -41,6 +39,8 @@ class _AddFileElevatedState extends ConsumerState<AddFileElevated> {
 
     final studentProfile = ref.watch(studentProvider);
 
+    final studentUni = ref.watch(studentUniProvider);
+
     // ----------- selected items ----------------------
     final faculty = ref.watch(_selectedFacultyProvider);
 
@@ -68,7 +68,8 @@ class _AddFileElevatedState extends ConsumerState<AddFileElevated> {
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(context),
                   ]),
-                  items: faculties
+                  items: Faculty(uni: studentUni)
+                      .uniFaculties
                       .map(
                         (e) => DropdownMenuItem(
                           child: Text(e.name),
@@ -275,7 +276,12 @@ class _AddFileElevatedState extends ConsumerState<AddFileElevated> {
                         final uploadRes = await driveRepo.uploadFileResource(
                           fp.files.first.path!,
                           directory:
-                              '${studentProfile!.departmentCode}/${studentProfile.email.studentNumber.stringYear}/${_data['category']}/${_data['year']}/$courseCode',
+                              '${studentProfile!.departmentCode}/${getStudentNumberFromEmail(
+                            studentProfile.email,
+                            McUniEmailDomain.uniDomains.firstWhere((uni) =>
+                                uni.university ==
+                                ref.watch(studentUniProvider)),
+                          )?.stringYear}/${_data['category']}/${_data['year']}/$courseCode',
                           filename: '$courseCode.pdf',
                         );
 
@@ -303,7 +309,13 @@ class _AddFileElevatedState extends ConsumerState<AddFileElevated> {
                           uploadedBy: studentProfile.id!,
                           createdOn: DateTime.now(),
                           courseCode: courseCode,
-                          part: studentProfile.email.studentNumber.stringYear,
+                          part: getStudentNumberFromEmail(
+                            studentProfile.email,
+                            McUniEmailDomain.uniDomains.firstWhere((uni) =>
+                                uni.university ==
+                                ref.watch(studentUniProvider)),
+                          )!
+                              .stringYear,
                           approvalStatus: 'pending',
                           year: int.parse(_data['year']),
                           category: _data['category'],
@@ -311,7 +323,12 @@ class _AddFileElevatedState extends ConsumerState<AddFileElevated> {
                             filename: '$courseCode.pdf',
                             filepath: uploadRes.toString(),
                             prefix:
-                                '${studentProfile.departmentCode}/${studentProfile.email.studentNumber.stringYear}/${_data['category']}/${_data['year']}',
+                                '${studentProfile.departmentCode}/${getStudentNumberFromEmail(
+                              studentProfile.email,
+                              McUniEmailDomain.uniDomains.firstWhere((uni) =>
+                                  uni.university ==
+                                  ref.watch(studentUniProvider)),
+                            )?.stringYear}/${_data['category']}/${_data['year']}',
                           ),
                         );
 

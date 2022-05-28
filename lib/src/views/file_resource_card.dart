@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:mc_core_constants/mc_core_constants.dart';
 import 'package:mini_campus_core/mini_campus_core.dart';
 
 import '../data/models/resource/file_resource.dart';
@@ -37,7 +36,7 @@ class FileResourceCard extends StatelessWidget {
                       child: InkWell(
                         child: const Icon(
                           Icons.info,
-                          color: greyTextShade,
+                          color: McAppColors.appGreyShadeColor,
                         ),
                         onTap: () {
                           ResourceDetailsModal(context, recentFile);
@@ -65,7 +64,7 @@ class FileResourceCard extends StatelessWidget {
                           .bodyText2
                           ?.copyWith(fontSize: 10),
                     ),
-                    const VerticalDivider(color: greyTextShade),
+                    const VerticalDivider(color: McAppColors.appGreyShadeColor),
                     Text(
                       recentFile.year.toString(),
                       style: Theme.of(context)

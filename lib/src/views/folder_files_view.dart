@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mc_core_constants/mc_core_constants.dart';
+import 'package:mini_campus_core/mini_campus_core.dart';
 
 import '../services/resource_repo.dart';
 import 'file_resource_card.dart';
@@ -15,7 +15,7 @@ class FolderFilesView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final _style = Theme.of(context).textTheme.subtitle2?.copyWith(
           fontSize: 12,
-          color: greyTextShade,
+          color: McAppColors.appGreyShadeColor,
           fontWeight: FontWeight.w400,
           fontStyle: FontStyle.italic,
         );

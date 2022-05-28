@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:intl/intl.dart';
-import 'package:mc_core_constants/mc_core_constants.dart';
 import 'package:mini_campus_core/mini_campus_core.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:relative_scale/relative_scale.dart';
@@ -70,7 +69,7 @@ void ResourceDetailsModal(BuildContext context, FileResource item) {
                                       .subtitle2
                                       ?.copyWith(
                                         fontSize: 15,
-                                        color: greyTextShade,
+                                        color: McAppColors.appGreyShadeColor,
                                       ),
                                 );
                               } else {
@@ -89,10 +88,8 @@ void ResourceDetailsModal(BuildContext context, FileResource item) {
                       const Spacer(),
                       Text(
                         DateFormat.yMMMMd().format(item.createdOn),
-                        style: Theme.of(context)
-                            .textTheme
-                            .subtitle2
-                            ?.copyWith(fontSize: 11, color: greyTextShade),
+                        style: Theme.of(context).textTheme.subtitle2?.copyWith(
+                            fontSize: 11, color: McAppColors.appGreyShadeColor),
                       ),
                     ],
                   ),
@@ -107,7 +104,7 @@ void ResourceDetailsModal(BuildContext context, FileResource item) {
                           style:
                               Theme.of(context).textTheme.subtitle2?.copyWith(
                                     fontSize: 13,
-                                    color: greyTextShade,
+                                    color: McAppColors.appGreyShadeColor,
                                   ),
                         ),
                         Text(
@@ -115,7 +112,7 @@ void ResourceDetailsModal(BuildContext context, FileResource item) {
                           style:
                               Theme.of(context).textTheme.subtitle2?.copyWith(
                                     fontSize: 13,
-                                    color: greyTextShade,
+                                    color: McAppColors.appGreyShadeColor,
                                   ),
                         ),
                         Text(
@@ -123,7 +120,7 @@ void ResourceDetailsModal(BuildContext context, FileResource item) {
                           style:
                               Theme.of(context).textTheme.subtitle2?.copyWith(
                                     fontSize: 13,
-                                    color: greyTextShade,
+                                    color: McAppColors.appGreyShadeColor,
                                   ),
                         ),
                         Text(
@@ -131,7 +128,7 @@ void ResourceDetailsModal(BuildContext context, FileResource item) {
                           style:
                               Theme.of(context).textTheme.subtitle2?.copyWith(
                                     fontSize: 13,
-                                    color: greyTextShade,
+                                    color: McAppColors.appGreyShadeColor,
                                   ),
                         ),
                       ],

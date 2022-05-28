@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:mc_core_constants/mc_core_constants.dart';
 import 'package:mini_campus_core/mini_campus_core.dart';
 import 'package:relative_scale/relative_scale.dart';
 
@@ -32,7 +31,12 @@ class _LearningHomeViewState extends ConsumerState<LearningHomeView> {
     setState(() {
       _learningFilter = {
         'dptCode': studentProfile!.departmentCode,
-        'part': _selectedPart ?? studentProfile!.email.studentNumber.stringYear,
+        'part': _selectedPart ??
+            getStudentNumberFromEmail(
+              studentProfile!.email,
+              McUniEmailDomain.uniDomains.firstWhere(
+                  (uni) => uni.university == ref.read(studentUniProvider)),
+            )?.stringYear,
         'category': '',
       };
     });
@@ -49,14 +53,14 @@ class _LearningHomeViewState extends ConsumerState<LearningHomeView> {
   Widget build(BuildContext context) {
     final _style = Theme.of(context).textTheme.subtitle2?.copyWith(
           fontSize: 12,
-          color: greyTextShade,
+          color: McAppColors.appGreyShadeColor,
           fontWeight: FontWeight.w400,
           fontStyle: FontStyle.italic,
         );
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        backgroundColor: bluishColor,
+        backgroundColor: McAppColors.appMainColor,
         tooltip: 'upload new file',
         onPressed: () {
           routeTo(context, const AddLearningFileResource());
@@ -211,7 +215,7 @@ class _LearningHomeViewState extends ConsumerState<LearningHomeView> {
           margin: const EdgeInsets.fromLTRB(16, 16, 0, 16),
           padding: const EdgeInsets.all(3),
           decoration: BoxDecoration(
-            color: bluishColorShade,
+            color: McAppColors.appMainShadeColor,
             borderRadius: const BorderRadius.only(topLeft: Radius.circular(25)),
           ),
           child: Column(
