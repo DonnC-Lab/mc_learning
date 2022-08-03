@@ -2,6 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mc_learning/src/data/models/resource/file_resource.dart';
 import 'package:mini_campus_core/mini_campus_core.dart';
 
+import '../data/constants/api_urls.dart';
+
 final resRepProvider = Provider((_) => FileResourceRepository(_.read));
 
 final resFilterProvider =
@@ -16,12 +18,11 @@ final resFilterProvider =
 class FileResourceRepository {
   late final DetaRepository _detaRepository;
 
-  final Reader _read;
-
-  FileResourceRepository(this._read)
+  FileResourceRepository(Reader _read)
       : _detaRepository = DetaRepository(
-          baseName: DetaBases.learnResource,
-          detaBaseUrl: _read(flavorConfigProvider)['detaBaseUrl'],
+          baseName: LearningApiConstants.kDetaLearnResourceCollection,
+          detaBaseUrl: LearningApiConstants.kDetaLearningBaseUrl ??
+              _read(flavorConfigProvider)['detaBaseUrl'],
         );
 
   Future addFileResource(FileResource fileResource) async {

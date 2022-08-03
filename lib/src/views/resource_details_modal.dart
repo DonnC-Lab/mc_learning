@@ -77,7 +77,7 @@ void ResourceDetailsModal(BuildContext context, FileResource item) {
                                   child: SizedBox(
                                     height: 20,
                                     width: 20,
-                                    child: CircularProgressIndicator(),
+                                    child: CircularProgressIndicator.adaptive(),
                                   ),
                                 );
                               }

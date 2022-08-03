@@ -53,8 +53,8 @@ class FolderFilesView extends ConsumerWidget {
                       '🙁 failed to fetch ${learningFilter['category']} resources',
                       style: _style,
                     )),
-                    loading: () =>
-                        const Center(child: CircularProgressIndicator()),
+                    loading: () => const Center(
+                        child: CircularProgressIndicator.adaptive()),
                   ),
             ),
           ],

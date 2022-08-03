@@ -68,7 +68,7 @@ class _LearningHomeViewState extends ConsumerState<LearningHomeView> {
         child: const Icon(MaterialIcons.upload_file),
       ),
       body: studentProfile == null
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator.adaptive())
           : RelativeBuilder(builder: (context, height, width, sy, sx) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,8 +164,8 @@ class _LearningHomeViewState extends ConsumerState<LearningHomeView> {
                               child: Text(
                                   '🙁 failed to fetch Learning Resource Items',
                                   style: _style)),
-                          loading: () =>
-                              const Center(child: CircularProgressIndicator()),
+                          loading: () => const Center(
+                              child: CircularProgressIndicator.adaptive()),
                         ),
                   ),
                 ],

@@ -160,7 +160,7 @@ class _AddFileElevatedState extends ConsumerState<AddFileElevated> {
 
                           //
                           else {
-                            return const CircularProgressIndicator();
+                            return const CircularProgressIndicator.adaptive();
                           }
                         })
                     : const SizedBox.shrink(),
@@ -215,7 +215,7 @@ class _AddFileElevatedState extends ConsumerState<AddFileElevated> {
 
                           // loader
                           else {
-                            return const CircularProgressIndicator();
+                            return const CircularProgressIndicator.adaptive();
                           }
                         }),
                       )

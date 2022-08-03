@@ -64,7 +64,7 @@ class FileResourceViewerOnline extends ConsumerWidget {
           if (snapshot.hasError) {
             return Center(child: Text('🙁 error loading file', style: _style));
           } else {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator.adaptive());
           }
         },
       ),

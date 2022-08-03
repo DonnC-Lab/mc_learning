@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mini_campus_core/mini_campus_core.dart';
 
+import '../data/constants/api_urls.dart';
+
 final learningStorageProvider = Provider((_) => StorageService(_.read));
 
 class StorageService {
@@ -16,7 +18,8 @@ class StorageService {
     String? directory,
     String? filename,
   }) async {
-    final driveInstance = DetaDriveInit(drive: DetaDrives.learning);
+    final driveInstance =
+        DetaDriveInit(drive: LearningApiConstants.kDetaLearningDrive);
 
     final drive = _read(detaStorageProvider(driveInstance));
 
@@ -39,8 +42,8 @@ class StorageService {
   }
 
   Future<File?> downloadFileResourceFuture(String filename) async {
-    final driveInstance =
-        DetaDriveInit(drive: DetaDrives.learning, filename: filename);
+    final driveInstance = DetaDriveInit(
+        drive: LearningApiConstants.kDetaLearningDrive, filename: filename);
 
     final res =
         await _read(detaStorageProvider(driveInstance)).download(filename);

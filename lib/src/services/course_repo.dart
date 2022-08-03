@@ -2,21 +2,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mc_learning/src/data/models/course.dart';
 import 'package:mini_campus_core/mini_campus_core.dart';
 
+import '../data/constants/api_urls.dart';
+
 final courseRepProvider = Provider((_) => CourseRepository(_.read));
 
 /// deta base repository
 class CourseRepository {
-  // ! change deta base name here if need be
-  // add multiple bases here also if need be and query proper base
-
   late final DetaRepository _detaRepository;
 
-  final Reader _read;
-
-  CourseRepository(this._read)
+  CourseRepository(Reader _read)
       : _detaRepository = DetaRepository(
-          baseName: DetaBases.learnCourse,
-          detaBaseUrl: _read(flavorConfigProvider)['detaBaseUrl'],
+          baseName: LearningApiConstants.kDetaLearnCourseCollection,
+          detaBaseUrl: LearningApiConstants.kDetaLearningBaseUrl ??
+              _read(flavorConfigProvider)['detaBaseUrl'],
         );
 
   Future addCourse(Course course) async {
@@ -60,8 +58,8 @@ class CourseRepository {
     // er
     catch (e) {
       debugLogger(e.toString());
+      return const [];
     }
-    return const [];
   }
 
   Future<Course?> getSingleCourse(String courseCode) async {
@@ -79,8 +77,8 @@ class CourseRepository {
     // er
     catch (e) {
       debugLogger(e.toString());
+      return null;
     }
-    return null;
   }
 
   Future<List<Course>> getAllCourses() async {
@@ -99,7 +97,7 @@ class CourseRepository {
     // er
     catch (e) {
       debugLogger(e.toString());
+      return const [];
     }
-    return const [];
   }
 }

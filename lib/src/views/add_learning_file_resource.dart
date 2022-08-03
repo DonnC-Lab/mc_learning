@@ -144,7 +144,7 @@ class _AddLearningFileResourceState
                           // loader
                           else {
                             return const Center(
-                                child: CircularProgressIndicator());
+                                child: CircularProgressIndicator.adaptive());
                           }
                         }),
                       )
